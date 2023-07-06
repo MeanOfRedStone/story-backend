@@ -19,8 +19,9 @@ public class Comment extends BaseTimeEntity{
     @JoinColumn(name = "story_id")
     private Story story;
 
-    @Column(nullable = false)
-    private String username;
+    @ManyToOne
+    @JoinColumn(name= "user_id")
+    private User user;
 
     @Column(nullable = false)
     private String content;

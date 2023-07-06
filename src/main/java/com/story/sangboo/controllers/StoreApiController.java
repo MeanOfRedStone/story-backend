@@ -21,13 +21,13 @@ public class StoreApiController {
         return ResponseEntity.status(HttpStatus.OK).body(service.createStore(dto));
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<StoreResponseDto> getStoreById(@PathVariable Long id){
         // 가게 정보 불러오기
         return ResponseEntity.status(HttpStatus.OK).body(service.getStore(id));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Long> deleteStoreById(@PathVariable Long id){
         // 가게 삭제하기
         return ResponseEntity.status(HttpStatus.OK).body(service.deleteStoreById(id));

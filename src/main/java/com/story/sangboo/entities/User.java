@@ -39,4 +39,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Store> stores;
 
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comment;
+
 }

@@ -31,6 +31,10 @@ public class Story extends BaseTimeEntity{
 
     private String emotion;
 
+    @Column(columnDefinition = "TEXT")
+    private String content;
+
+
     @ManyToMany
     @JoinTable(
             name = "post_user_like",
