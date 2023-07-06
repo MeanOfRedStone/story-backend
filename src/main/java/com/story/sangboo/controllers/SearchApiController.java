@@ -20,6 +20,7 @@ public class SearchApiController {
 
     @PostMapping
     public ResponseEntity<Long> createSearch(@RequestBody SearchRequestDto dto){
+        // 검색어 등록하기
         return ResponseEntity.status(HttpStatus.OK).body(service.createSearch(dto));
     }
 
