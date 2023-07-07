@@ -34,6 +34,7 @@ public class CommentApiController {
         // 댓글 수정하기
         return ResponseEntity.status(HttpStatus.OK).body(service.updateComment(id,dto));
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Long> deleteComment(@PathVariable Long id){
         // 댓글 삭제하기
