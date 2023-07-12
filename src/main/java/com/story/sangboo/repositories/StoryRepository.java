@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface StoryRepository extends JpaRepository<Story,Long> {
 
-
+    // 페이징하여 게시글을 불러오는 메서드
     @Query("SELECT s FROM Story s where s.store.id = :storeId ORDER BY s.id DESC")
     Page<Story> findStoryByStoreId(@Param("storeId") Long storeId, Pageable pageable);
 }

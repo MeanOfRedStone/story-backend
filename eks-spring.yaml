@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-svc
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: spring-dep
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-dep
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: spring-dep
+  template:
+    metadata:
+      labels:
+        app: spring-dep
+    spec:
+      containers:
+        - name: spring-con
+          image: marmindev/music-app:1
+          ports:
+            - containerPort: 80

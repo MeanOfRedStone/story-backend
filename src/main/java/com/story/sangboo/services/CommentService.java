@@ -3,7 +3,6 @@ package com.story.sangboo.services;
 import com.story.sangboo.dtos.comment.CommentRequestDto;
 import com.story.sangboo.dtos.comment.CommentResponseDto;
 import com.story.sangboo.dtos.comment.CommentUpdateRequestDto;
-import com.story.sangboo.dtos.story.StoryListResponseDto;
 import com.story.sangboo.entities.Comment;
 import com.story.sangboo.entities.Story;
 import com.story.sangboo.entities.User;
