@@ -27,5 +27,5 @@ jobs:
 
         run: |
           docker build -t music-app .
-          docker tag music-app:latest marmindev/music-app:latest
+          docker tag music-app marmindev/music-app:latest
           docker push marmindev/music-app:latest
