@@ -18,15 +18,13 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public UserResponseDto getUser(Long id) {
+    public UserResponseDto getUser(UserResponseDto dto) {
         // 유저 정보 불러오기
-        Optional<User> userOptional = userRepository.findById(id);
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            return new UserResponseDto(user);
-        } else {
-            throw new RuntimeException("해당하는 유저 정보가 없습니다.");
-        }
+        User user = userRepository.findByUsername(dto.getUsername());
+        System.out.println(user);
+
+        return new UserResponseDto(user);
+
     }
 
     @Transactional

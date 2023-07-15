@@ -15,10 +15,10 @@ public class UserApiController {
 
     private final UserService service;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<UserResponseDto> getUser(@PathVariable Long id){
+    @PostMapping
+    public ResponseEntity<UserResponseDto> getUser(@RequestBody UserResponseDto dto){
         // 유저 정보 가져오기
-        return ResponseEntity.status(HttpStatus.OK).body(service.getUser(id));
+        return ResponseEntity.status(HttpStatus.OK).body(service.getUser(dto));
     }
 
     @DeleteMapping("/{id}")
