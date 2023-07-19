@@ -18,11 +18,11 @@ public class Story extends BaseTimeEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "store_id")
     private Store store;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name= "user_id")
     private User user;
 
@@ -35,14 +35,15 @@ public class Story extends BaseTimeEntity{
     private String content;
 
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "post_user_like",
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
+
     )
     private List<User> likedUser;
 
-    @OneToMany(mappedBy = "story")
+    @OneToMany(mappedBy = "story",cascade = CascadeType.ALL)
     private List<Comment> comment;
 }

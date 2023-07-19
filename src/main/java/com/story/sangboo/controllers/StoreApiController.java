@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/store")
@@ -21,7 +23,7 @@ public class StoreApiController {
         return ResponseEntity.status(HttpStatus.OK).body(service.createStore(dto));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("detail/{id}")
     public ResponseEntity<StoreResponseDto> getStoreById(@PathVariable Long id){
         // 가게 정보 불러오기
         return ResponseEntity.status(HttpStatus.OK).body(service.getStore(id));
@@ -32,6 +34,18 @@ public class StoreApiController {
         // 가게 삭제하기
         return ResponseEntity.status(HttpStatus.OK).body(service.deleteStoreById(id));
     }
+
+    @GetMapping("/{page}")
+    public ResponseEntity<List<StoreResponseDto>> getStores(@PathVariable int page){
+        // 가게 리스트 불러오기
+        return ResponseEntity.status(HttpStatus.OK).body(service.getStores(page));
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<StoreResponseDto>> getStoresByUserId(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(service.getStoreByUser(id));
+    }
+
 
 
 }

@@ -3,6 +3,9 @@ package com.story.sangboo.services;
 import com.story.sangboo.dtos.user.UserRequestDto;
 import com.story.sangboo.dtos.user.UserResponseDto;
 import com.story.sangboo.entities.User;
+import com.story.sangboo.repositories.CommentRepository;
+import com.story.sangboo.repositories.SearchRepository;
+import com.story.sangboo.repositories.StoreRepository;
 import com.story.sangboo.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,19 +19,22 @@ public class UserService {
     //유저 관련 비즈니스 로직
 
     private final UserRepository userRepository;
+    private final StoreRepository storeRepository;
+    private final CommentRepository commentRepository;
+    private final SearchRepository searchRepository;
 
     @Transactional
     public UserResponseDto getUser(UserResponseDto dto) {
         // 유저 정보 불러오기
         User user = userRepository.findByUsername(dto.getUsername());
         System.out.println(user);
-
         return new UserResponseDto(user);
 
     }
 
     @Transactional
     public Long deleteUserById(Long id){
+
         // 회원 탈퇴하기
         userRepository.deleteById(id);
         return id;

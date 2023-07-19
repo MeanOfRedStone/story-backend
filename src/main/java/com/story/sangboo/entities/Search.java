@@ -16,7 +16,7 @@ public class Search extends BaseTimeEntity {
     private Long id;
 
     // User필드와 다 대 1 매핑
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 

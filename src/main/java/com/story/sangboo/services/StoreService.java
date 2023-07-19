@@ -3,12 +3,19 @@ package com.story.sangboo.services;
 import com.story.sangboo.dtos.store.StoreRequestDto;
 import com.story.sangboo.dtos.store.StoreResponseDto;
 import com.story.sangboo.entities.Store;
+import com.story.sangboo.entities.Story;
 import com.story.sangboo.entities.User;
 import com.story.sangboo.repositories.StoreRepository;
 import com.story.sangboo.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -45,5 +52,21 @@ public class StoreService {
         repository.deleteById(id);
         return id;
     }
+
+    @Transactional
+    public List<StoreResponseDto> getStores(int page){
+        // 가게 목록 불러오기
+        Pageable pageable = PageRequest.of(page,30);
+        Page<Store> page1 = repository.findAllByPage(pageable);
+        List<Store> stores = page1.getContent();
+        return stores.stream().map(StoreResponseDto::new).toList();
+    }
+
+    @Transactional
+    public List<StoreResponseDto> getStoreByUser(Long id){
+        List<Store> stores = repository.findAllByUserId(id);
+        return stores.stream().map(StoreResponseDto::new).toList();
+    }
+
 
 }

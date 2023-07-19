@@ -21,11 +21,11 @@ public class Store {
     @Column(nullable = false, unique = true)
     private String storeName;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "store")
+    @OneToMany(mappedBy = "store",cascade = CascadeType.ALL)
     private List<Story> stories;
 
 }

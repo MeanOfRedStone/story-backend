@@ -18,4 +18,8 @@ public interface SearchRepository extends JpaRepository<Search,Long> {
     @Modifying
     @Query("DELETE FROM Search s WHERE s.search = :search AND s.user.id = :userid")
     void deleteBySearch(@Param("search") String search, @Param("userid") Long userid);
+
+    @Modifying
+    @Query("DELETE FROM Search s WHERE s.user.id = :userId")
+    void deleteByUserId(@Param("userId")Long userId);
 }
