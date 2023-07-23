@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface StoryRepository extends JpaRepository<Story,Long> {
 
     // 페이징하여 게시글을 불러오는 메서드
@@ -17,4 +19,7 @@ public interface StoryRepository extends JpaRepository<Story,Long> {
     @Query("DELETE FROM Story s WHERE s.user.id = :userId ")
     @Modifying
     void deleteByUserName(@Param("userId") Long userId);
+
+    @Query("SELECT s FROM Story s WHERE s.store.id = :storeId ORDER BY id")
+    List<Story> findAllByStoreId(@Param("storeId") Long storeId);
 }

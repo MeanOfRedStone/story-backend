@@ -32,10 +32,10 @@ public class StoryService {
     @Transactional
     public Long CreateStory(StoryRequestDto dto,Long userId, Long storeId){
         // 사연 생성
-        Story story = new Story();
-        story.setSong(dto.getSong());
-        story.setEmotion(dto.getEmotion());
-        story.setContent(dto.getContent());
+        Story story = dto.toStory(dto);
+//        story.setSongName();
+//        story.setEmotion(dto.getEmotion());
+//        story.setContent(dto.getContent());
         // ID 에 맞는 유저 불러오기
         User user = userRepository.findById(userId)
                 .orElseThrow(()->new RuntimeException("존재하지 않는 유저입니다"));
@@ -58,13 +58,11 @@ public class StoryService {
     }
 
     @Transactional
-    public List<StoryListResponseDto> getStoryList(Long storeId, int page){
+    public List<StoryListResponseDto> getStoryList(Long storeId){
         // 사연 리스트 15 개씩 불러오게 만들기
-        Pageable pageable = PageRequest.of(page,15);
-        Page<Story> page1 = repository.findStoryByStoreId(storeId,pageable);
-        List<Story>  storyList = page1.getContent();
+        List<Story> storyList = repository.findAllByStoreId(storeId);
         List<StoryListResponseDto> storyListResponseDtos = storyList.stream().map(
-                (story)->new StoryListResponseDto(story)).collect(Collectors.toList());
+                StoryListResponseDto::new).collect(Collectors.toList());
         return storyListResponseDtos;
     }
 

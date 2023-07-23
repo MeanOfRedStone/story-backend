@@ -2,6 +2,7 @@ package com.story.sangboo.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Data
 public class Story extends BaseTimeEntity{
     // 사연 정보 클래스
@@ -27,7 +29,13 @@ public class Story extends BaseTimeEntity{
     private User user;
 
     @Column(nullable = false)
-    private String song;
+    private String songName;
+
+    @Column(nullable = false)
+    private String artist;
+
+    @Column(nullable = false)
+    private String uri;
 
     private String emotion;
 

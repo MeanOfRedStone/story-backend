@@ -23,7 +23,7 @@ public class StoreApiController {
         return ResponseEntity.status(HttpStatus.OK).body(service.createStore(dto));
     }
 
-    @GetMapping("detail/{id}")
+    @GetMapping("/detail/{id}")
     public ResponseEntity<StoreResponseDto> getStoreById(@PathVariable Long id){
         // 가게 정보 불러오기
         return ResponseEntity.status(HttpStatus.OK).body(service.getStore(id));

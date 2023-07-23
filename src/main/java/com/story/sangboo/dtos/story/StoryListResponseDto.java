@@ -4,6 +4,8 @@ import com.story.sangboo.entities.Story;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 public class StoryListResponseDto {
@@ -14,16 +16,28 @@ public class StoryListResponseDto {
 
     private String emotion;
 
-    private String song;
-
     private String content;
+
+    private String songName;
+
+    private String artist;
+
+    private String uri;
+
+    private LocalDateTime modifiedAt;
+
 
     public StoryListResponseDto(Story story){
         this.id = story.getId();
         this.username = story.getUser().getUsername();
-        this.emotion = story.getEmotion();
-        this.song = story.getSong();
         this.content = story.getContent();
+        this.emotion = story.getEmotion();
+        this.songName = story.getSongName();
+        this.artist = story.getArtist();
+        this.uri = story.getUri();
+        this.modifiedAt = story.getSaveAt();
+
+
     }
 
 }
