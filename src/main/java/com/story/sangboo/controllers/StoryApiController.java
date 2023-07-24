@@ -25,13 +25,13 @@ public class StoryApiController {
         return ResponseEntity.status(HttpStatus.OK).body(service.CreateStory(dto,userId,storeId));
     }
 
-    @GetMapping("/list/{id}")
+    @GetMapping("/detail/{id}")
     public ResponseEntity<StoryDetailResponseDto> getStoryDetail(@PathVariable Long id){
         // 사연 상세정보 가져오기
         return ResponseEntity.status(HttpStatus.OK).body(service.getStoryDetail(id));
     }
 
-    @GetMapping("/{storeId}")
+    @GetMapping("/list/{storeId}")
     public ResponseEntity<List<StoryListResponseDto>> getStoryList(@PathVariable Long storeId){
         // 사연 리스트 불러오기
         return ResponseEntity.status(HttpStatus.OK).body(service.getStoryList(storeId));
