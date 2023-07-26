@@ -49,12 +49,12 @@ public class StoryService {
     }
 
     @Transactional
-    public StoryDetailResponseDto getStoryDetail(Long id){
+    public StoryListResponseDto getStoryDetail(Long id){
         // 사연 상세 정보 불러오기
         Story story = repository.findById(id).orElseThrow(
                 ()->new RuntimeException("해당 게시물은 존재하지 않습니다.")
         );
-        return new StoryDetailResponseDto(story);
+        return new StoryListResponseDto(story);
     }
 
     @Transactional

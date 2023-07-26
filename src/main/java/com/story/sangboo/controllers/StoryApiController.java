@@ -26,7 +26,7 @@ public class StoryApiController {
     }
 
     @GetMapping("/detail/{id}")
-    public ResponseEntity<StoryDetailResponseDto> getStoryDetail(@PathVariable Long id){
+    public ResponseEntity<StoryListResponseDto> getStoryDetail(@PathVariable Long id){
         // 사연 상세정보 가져오기
         return ResponseEntity.status(HttpStatus.OK).body(service.getStoryDetail(id));
     }

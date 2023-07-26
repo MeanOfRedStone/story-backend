@@ -26,6 +26,9 @@ public class StoryDetailResponseDto {
 
     private LocalDateTime saveAt;
 
+
+
+
     public StoryDetailResponseDto(Story story){
         this.id = story.getId();
         this.storeId = story.getStore().getId();

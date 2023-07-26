@@ -14,6 +14,14 @@ public class StoreResponseDto {
 
     private String username;
 
+    private String songName;
+
+    private String uri;
+
+    private String artist;
+
+
+
     public StoreResponseDto(Store store){
         this.id = store.getId();
         this.storeName = store.getStoreName();
