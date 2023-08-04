@@ -12,6 +12,8 @@ public interface SongRepository extends JpaRepository<Song,Long> {
     @Query("SELECT s FROM Song s WHERE s.artist LIKE %:search% OR s.songName LIKE %:search% ORDER BY (CHAR_LENGTH(s.artist) + CHAR_LENGTH(s.songName)) - (CHAR_LENGTH(REPLACE(s.artist, :search, '')) + CHAR_LENGTH(REPLACE(s.songName, :search, ''))) DESC")
     List<Song> findAllBySearch(@Param("search") String search);
 
+    @Query("SELECT s FROM Song s WHERE emotion=:emotion")
+    List<Song> findAllByEmotion(@Param("emotion") String emotion);
 
 
 }

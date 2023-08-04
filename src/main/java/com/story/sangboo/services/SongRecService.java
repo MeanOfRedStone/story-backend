@@ -2,8 +2,9 @@ package com.story.sangboo.services;
 
 import com.story.sangboo.dtos.songRec.SongRecRequestDto;
 import com.story.sangboo.dtos.songRec.SongRecResponseDto;
-import com.story.sangboo.entities.SongRec;
-import com.story.sangboo.repositories.SongRecRepository;
+import com.story.sangboo.entities.Song;
+
+import com.story.sangboo.repositories.SongRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +15,14 @@ import java.util.Random;
 @RequiredArgsConstructor
 public class SongRecService {
 
-    private final SongRecRepository repository;
+    private final SongRepository repository;
 
     public SongRecResponseDto randomSongRec(SongRecRequestDto dto){
 
-        List<SongRec> songs = repository.findAllByEmotion(dto.getEmotion());
+        List<Song> songs = repository.findAllByEmotion(dto.getEmotion());
         if(songs.size() > 0) {
             int randomIndex = new Random().nextInt(songs.size());
-            SongRec song = songs.get(randomIndex);
+            Song song = songs.get(randomIndex);
             return new SongRecResponseDto(song);
         }
         else{

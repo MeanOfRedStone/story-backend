@@ -1,6 +1,6 @@
 package com.story.sangboo.dtos.songRec;
 
-import com.story.sangboo.entities.SongRec;
+import com.story.sangboo.entities.Song;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +18,7 @@ public class SongRecResponseDto {
 
     private String emotion;
 
-    public SongRecResponseDto(SongRec song){
+    public SongRecResponseDto(Song song){
         this.songName = song.getSongName();
         this.artist = song.getArtist();
         this.uri = song.getUri();
