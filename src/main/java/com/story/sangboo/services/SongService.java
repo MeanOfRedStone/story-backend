@@ -48,6 +48,7 @@ public class SongService {
     public List<UserSongResponseDto> findAllEmotionByUser(Long id) {
         // 유저가 플레이한 모든 사연 들고오기
         List<Story> stories = storyRepository.findAllByUserId(id);
+//        System.out.println(stories.size());
         // 유저가 플레이한 모든 신청곡 불러오기
         List<Song> songs = stories.stream().map((story)->repository.findBySongName(story.getUri())).toList();
         List<UserSongResponseDto> dtos = new ArrayList<>();
@@ -68,19 +69,31 @@ public class SongService {
             }
             dtos.add(dto);
         }
-        for(int i=0; i < songs.size();i++){
-            if (Objects.equals(songs.get(i).getEmotion(), "sadness")){
+        System.out.println(songs.size());
+
+        for (Song song : songs) {
+            System.out.println("'"+song.getEmotion().toLowerCase()+"'");
+            if (Objects.equals(song.getEmotion().toLowerCase(), "sadness")) {
+
+                System.out.println("'1"+song.getEmotion().toLowerCase()+"'");
                 dtos.get(0).setCount(dtos.get(0).getCount() + 1);
-            }
-            else if (Objects.equals(songs.get(i).getEmotion(), "pleasure")){
-                dtos.get(0).setCount(dtos.get(1).getCount() + 1);
-            }
-            else if (Objects.equals(songs.get(i).getEmotion(), "joy")){
-                dtos.get(0).setCount(dtos.get(2).getCount() + 1);
-            }
-            else if (Objects.equals(songs.get(i).getEmotion(), "anger")){
-                dtos.get(0).setCount(dtos.get(3).getCount() + 1);
-            }else{
+
+            } else if (song.getEmotion().equalsIgnoreCase("pleasure")) {
+
+                System.out.println("'2"+song.getEmotion().toLowerCase()+"'");
+                dtos.get(1).setCount(dtos.get(1).getCount() + 1);
+
+            } else if (Objects.equals(song.getEmotion().toLowerCase(), "joy")) {
+
+                System.out.println("'3"+song.getEmotion().toLowerCase()+"'");
+                dtos.get(2).setCount(dtos.get(2).getCount() + 1);
+
+            } else if (Objects.equals(song.getEmotion().toLowerCase(), "anger")) {
+
+                System.out.println("'4"+song.getEmotion().toLowerCase()+"'");
+                dtos.get(3).setCount(dtos.get(3).getCount() + 1);
+
+            } else {
                 continue;
             }
         }
