@@ -55,12 +55,16 @@ public class SongService {
             UserSongResponseDto dto = new UserSongResponseDto();
             if(i == 0){
                 dto.setEmotion("슬픔");
+                dto.setCount(0);
             } else if (i ==1) {
                 dto.setEmotion("평온");
+                dto.setCount(0);
             }else if (i==2){
                 dto.setEmotion("신남");
+                dto.setCount(0);
             }else{
                 dto.setEmotion("화남");
+                dto.setCount(0);
             }
             dtos.add(dto);
         }
