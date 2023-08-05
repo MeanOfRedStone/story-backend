@@ -2,14 +2,12 @@ package com.story.sangboo.controllers;
 
 import com.story.sangboo.dtos.song.SongRequestDto;
 import com.story.sangboo.dtos.song.SongResponseDto;
+import com.story.sangboo.dtos.song.UserSongResponseDto;
 import com.story.sangboo.services.SongService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +22,11 @@ public class SongController {
     public ResponseEntity<List<SongResponseDto>> findAllBySearch (@RequestBody SongRequestDto dto){
         System.out.println(dto.getSearch());
         return ResponseEntity.status(HttpStatus.OK).body(service.findAllBySearch(dto));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<List<UserSongResponseDto>> findAllEmoBByUser (@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(service.findAllEmotionByUser(id));
     }
 
 

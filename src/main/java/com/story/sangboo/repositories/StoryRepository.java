@@ -22,4 +22,7 @@ public interface StoryRepository extends JpaRepository<Story,Long> {
 
     @Query("SELECT s FROM Story s WHERE s.store.id = :storeId ORDER BY id")
     List<Story> findAllByStoreId(@Param("storeId") Long storeId);
+
+    @Query("SELECT s FROM Story s WHERE s.user.id= :userId ORDER BY id")
+    List<Story> findAllByUserId(@Param("userId") Long userId);
 }
