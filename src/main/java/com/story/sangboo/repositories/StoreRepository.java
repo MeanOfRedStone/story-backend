@@ -19,8 +19,6 @@ public interface StoreRepository extends JpaRepository<Store,Long> {
 
     @Query("SELECT s FROM Store s " +
             "WHERE s.id IN (SELECT st.store.id FROM Story st " +
-            "WHERE st.emotion = :emotion " +
-            "GROUP BY st.store.id " +
-            "ORDER BY COUNT(st) DESC)")
+            "WHERE st.emotion = :emotion)")
     List<Store> findByMaxEmotion(@Param("emotion") String emotion);
 }

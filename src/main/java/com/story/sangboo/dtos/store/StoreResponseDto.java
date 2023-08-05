@@ -14,7 +14,7 @@ public class StoreResponseDto {
 
     private String username;
 
-   
+
 
 
 
