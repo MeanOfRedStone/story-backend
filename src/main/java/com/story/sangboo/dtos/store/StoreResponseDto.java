@@ -14,11 +14,7 @@ public class StoreResponseDto {
 
     private String username;
 
-    private String songName;
-
-    private String uri;
-
-    private String artist;
+   
 
 
 

@@ -45,52 +45,45 @@ public class SongService {
 
     }
 
-    public List<UserSongResponseDto> findAllEmotionByUser(Long id) {
-        // 유저가 플레이한 모든 사연 들고오기
-        List<Story> stories = storyRepository.findAllByUserId(id);
-//        System.out.println(stories.size());
-        // 유저가 플레이한 모든 신청곡 불러오기
-        List<Song> songs = stories.stream().map((story)->repository.findBySongName(story.getUri())).toList();
+    public List<UserSongResponseDto> count(List<Song> songs) {
         List<UserSongResponseDto> dtos = new ArrayList<>();
-        for(int i = 0; i < 4; i++){
+        for (int i = 0; i < 4; i++) {
             UserSongResponseDto dto = new UserSongResponseDto();
-            if(i == 0){
+            if (i == 0) {
                 dto.setEmotion("슬픔");
                 dto.setCount(0);
-            } else if (i ==1) {
+            } else if (i == 1) {
                 dto.setEmotion("평온");
                 dto.setCount(0);
-            }else if (i==2){
+            } else if (i == 2) {
                 dto.setEmotion("신남");
                 dto.setCount(0);
-            }else{
+            } else {
                 dto.setEmotion("화남");
                 dto.setCount(0);
             }
             dtos.add(dto);
         }
-        System.out.println(songs.size());
-
         for (Song song : songs) {
-            System.out.println("'"+song.getEmotion().toLowerCase()+"'");
+            System.out.println("'" + song.getEmotion().toLowerCase() + "'");
             if (Objects.equals(song.getEmotion().toLowerCase(), "sadness")) {
 
-                System.out.println("'1"+song.getEmotion().toLowerCase()+"'");
+                System.out.println("'1" + song.getEmotion().toLowerCase() + "'");
                 dtos.get(0).setCount(dtos.get(0).getCount() + 1);
 
             } else if (song.getEmotion().equalsIgnoreCase("pleasure")) {
 
-                System.out.println("'2"+song.getEmotion().toLowerCase()+"'");
+                System.out.println("'2" + song.getEmotion().toLowerCase() + "'");
                 dtos.get(1).setCount(dtos.get(1).getCount() + 1);
 
             } else if (Objects.equals(song.getEmotion().toLowerCase(), "joy")) {
 
-                System.out.println("'3"+song.getEmotion().toLowerCase()+"'");
+                System.out.println("'3" + song.getEmotion().toLowerCase() + "'");
                 dtos.get(2).setCount(dtos.get(2).getCount() + 1);
 
             } else if (Objects.equals(song.getEmotion().toLowerCase(), "anger")) {
 
-                System.out.println("'4"+song.getEmotion().toLowerCase()+"'");
+                System.out.println("'4" + song.getEmotion().toLowerCase() + "'");
                 dtos.get(3).setCount(dtos.get(3).getCount() + 1);
 
             } else {
@@ -98,11 +91,29 @@ public class SongService {
             }
         }
         return dtos;
-
-
     }
 
 
 
+    @Transactional
+    public List<UserSongResponseDto> findAllEmotionByUser(Long id) {
+        // 유저가 플레이한 모든 사연 들고오기
+        List<Story> stories = storyRepository.findAllByUserId(id);
+//        System.out.println(stories.size());
+        // 유저가 플레이한 모든 신청곡 불러오기
+        List<Song> songs = stories.stream().map((story)->repository.findBySongName(story.getUri())).toList();
+        List<UserSongResponseDto> dtos = count(songs);
+//        System.out.println(songs.size());
+            return dtos;
+        }
+
+        @Transactional
+    public List<UserSongResponseDto> findAllEmotionByStore(Long id){
+        // 가게에서 플레이한 모든 사연 들고오기
+            List<Story> stories = storyRepository.findAllByStoreId(id);
+            List<Song> songs = stories.stream().map((story)->repository.findBySongName(story.getUri())).toList();
+            List<UserSongResponseDto> dtos = count(songs);
+            return dtos;
+        }
 
 }

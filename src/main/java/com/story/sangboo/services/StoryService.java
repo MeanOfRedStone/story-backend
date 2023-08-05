@@ -59,7 +59,7 @@ public class StoryService {
 
     @Transactional
     public List<StoryListResponseDto> getStoryList(Long storeId){
-        // 사연 리스트 15 개씩 불러오게 만들기
+        // 사연 리스트 불러오기
         List<Story> storyList = repository.findAllByStoreId(storeId);
         List<StoryListResponseDto> storyListResponseDtos = storyList.stream().map(
                 StoryListResponseDto::new).collect(Collectors.toList());

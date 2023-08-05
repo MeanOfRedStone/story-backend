@@ -28,6 +28,10 @@ public class SongController {
     public ResponseEntity<List<UserSongResponseDto>> findAllEmoBByUser (@PathVariable Long id){
         return ResponseEntity.status(HttpStatus.OK).body(service.findAllEmotionByUser(id));
     }
+    @GetMapping("/store/{id}")
+    public ResponseEntity<List<UserSongResponseDto>> findAllEmoBByStore (@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(service.findAllEmotionByStore(id));
+    }
 
 
 }

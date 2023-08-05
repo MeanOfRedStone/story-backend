@@ -17,5 +17,10 @@ public interface StoreRepository extends JpaRepository<Store,Long> {
     @Query("SELECT s FROM Store s WHERE s.user.id = :userId ORDER BY s.id DESC")
     List<Store> findAllByUserId(@Param("userId") Long userId);
 
-
+    @Query("SELECT s FROM Store s " +
+            "WHERE s.id IN (SELECT st.store.id FROM Story st " +
+            "WHERE st.emotion = :emotion " +
+            "GROUP BY st.store.id " +
+            "ORDER BY COUNT(st) DESC)")
+    List<Store> findByMaxEmotion(@Param("emotion") String emotion);
 }

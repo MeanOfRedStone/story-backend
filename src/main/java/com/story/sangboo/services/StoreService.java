@@ -1,5 +1,6 @@
 package com.story.sangboo.services;
 
+import com.story.sangboo.dtos.songRec.SongRecRequestDto;
 import com.story.sangboo.dtos.store.StoreRequestDto;
 import com.story.sangboo.dtos.store.StoreResponseDto;
 import com.story.sangboo.entities.Store;
@@ -65,6 +66,12 @@ public class StoreService {
     @Transactional
     public List<StoreResponseDto> getStoreByUser(Long id){
         List<Store> stores = repository.findAllByUserId(id);
+        return stores.stream().map(StoreResponseDto::new).toList();
+    }
+
+    @Transactional
+    public List<StoreResponseDto> getRefStore(SongRecRequestDto dto){
+        List<Store> stores=repository.findByMaxEmotion(dto.getEmotion());
         return stores.stream().map(StoreResponseDto::new).toList();
     }
 

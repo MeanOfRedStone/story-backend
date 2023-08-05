@@ -1,5 +1,6 @@
 package com.story.sangboo.controllers;
 
+import com.story.sangboo.dtos.songRec.SongRecRequestDto;
 import com.story.sangboo.dtos.store.StoreRequestDto;
 import com.story.sangboo.dtos.store.StoreResponseDto;
 import com.story.sangboo.services.StoreService;
@@ -44,6 +45,11 @@ public class StoreApiController {
     @GetMapping("/user/{id}")
     public ResponseEntity<List<StoreResponseDto>> getStoresByUserId(@PathVariable Long id){
         return ResponseEntity.status(HttpStatus.OK).body(service.getStoreByUser(id));
+    }
+
+    @PostMapping("/ref")
+    public ResponseEntity<List<StoreResponseDto>> getRefStore(@RequestBody SongRecRequestDto dto){
+        return ResponseEntity.status(HttpStatus.OK).body(service.getRefStore(dto));
     }
 
 
