@@ -49,7 +49,7 @@ public class SongService {
         // 유저가 플레이한 모든 사연 들고오기
         List<Story> stories = storyRepository.findAllByUserId(id);
         // 유저가 플레이한 모든 신청곡 불러오기
-        List<Song> songs = stories.stream().map((story)->repository.findBySongName(story.getSongName())).toList();
+        List<Song> songs = stories.stream().map((story)->repository.findBySongName(story.getUri())).toList();
         List<UserSongResponseDto> dtos = new ArrayList<>();
         for(int i = 0; i < 4; i++){
             UserSongResponseDto dto = new UserSongResponseDto();
